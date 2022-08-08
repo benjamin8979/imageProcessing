@@ -11,6 +11,23 @@ class imageProcessing {
 
     }
 
+    // Trim pixelCount pixels from the all four borders of the image and return the resulting 2D array of pixels
+    public static int[][] trimBorders(int[][] pixelData, int pixelCount) {
+        if (pixelData.length > pixelCount * 2 && pixelData[0].length > pixelCount * 2) {
+            int[][] trimmedPixelData = new int[pixelData.length - pixelCount * 2][pixelData[0].length - pixelCount * 2];
+            for (int i  = 0; i < trimmedPixelData.length; i++) {
+                for (int j = 0; j < trimmedPixelData[0].length; j++) {
+                    trimmedPixelData[i][j] = pixelData[i + pixelCount][j + pixelCount];
+                }
+            }
+            return trimmedPixelData;
+        }
+        else {
+            System.out.println("Image does not contain enough pixels to trim by that amount");
+            return pixelData;
+        }
+    }
+
     // Convert image from input file or link to 2D array of pixel rgba values
     public static int[][] imgToArr(String inputImage) {
         try {
@@ -60,14 +77,14 @@ class imageProcessing {
         }
     }
 
-    // convert the pixel value to an array containing the RGBA values of that pixel
+    // Convert the pixel value to an array containing the RGBA values of that pixel
     public static int[] pixelToRGBA(int pixel) {
         Color pixelColor = new Color(pixel);
         int[] rgba = {pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue(), pixelColor.getAlpha()};
         return rgba;
     }
 
-    // convert array of RGBA values to int containing hex value of that pixel
+    // Convert array of RGBA values to int containing hex value of that pixel
     public static int RGBAToPixel(int[] rgba) {
         if (rgba.length == 4) {
             Color pixelColor = new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
@@ -79,7 +96,7 @@ class imageProcessing {
         }
     }
 
-    // view pixel data of top left corner of image
+    // View pixel data of top left corner of image
     public static void viewImageData(int[][] pixelData) {
         if (pixelData.length > 3 && pixelData[0].length > 3) {
             int[][] rawPixelData = new int[3][3];
