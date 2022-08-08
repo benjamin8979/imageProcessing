@@ -59,4 +59,48 @@ class imageProcessing {
             System.err.println("Failed to save image: " + e.getLocalizedMessage());
         }
     }
+
+    // convert the pixel value to an array containing the RGBA values of that pixel
+    public static int[] pixelToRGBA(int pixel) {
+        Color pixelColor = new Color(pixel);
+        int[] rgba = {pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue(), pixelColor.getAlpha()};
+        return rgba;
+    }
+
+    // convert array of RGBA values to int containing hex value of that pixel
+    public static int RGBAToPixel(int[] rgba) {
+        if (rgba.length == 4) {
+            Color pixelColor = new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
+            return pixelColor.getRGB();
+        }
+        else {
+            System.out.println("Incorrect number of elements in rgba array. Requires 4 values.");
+            return -1;
+        }
+    }
+
+    // view pixel data of top left corner of image
+    public static void viewImageData(int[][] pixelData) {
+        if (pixelData.length > 3 && pixelData[0].length > 3) {
+            int[][] rawPixelData = new int[3][3];
+            for (int i = 0; i < pixelData.length; i++) {
+                for (int j = 0; j < pixelData[0].length; j++) {
+                    rawPixelData[i][j] = pixelData[i][j];
+                }
+            }
+            System.out.println("Raw pixel Data:");
+            System.out.println(Arrays.deepToString(rawPixelData));
+            int[][][] extractedPixelData = new int[3][3][4];
+            for (int i = 0; i < pixelData.length; i++) {
+                for (int j = 0; j < pixelData[0].length; j++) {
+                    extractedPixelData[i][j] = pixelToRGBA(pixelData[i][j]);
+                }
+            }
+            System.out.println("Extracted RGBA values from pixel data:");
+            System.out.println(Arrays.deepToString(extractedPixelData));
+        }
+        else {
+            System.out.println("Image is not big enough to display a 3x3 sample of the top left corner.");
+        }
+    }
 }
