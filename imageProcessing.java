@@ -11,6 +11,17 @@ class imageProcessing {
 
     }
 
+    // return negative version of input image pixel data
+    public static int[][] negativeColor(int[][] pixelData) {
+        int[][] negative = new int[pixelData.length][pixelData[0].length];
+        for (int i = 0; i < negative.length; i++) {
+            for (int j = 0; j < negative[0].length; j++) {
+                negative[i][j] = 255 - pixelData[i][j];
+            }
+        }
+        return negative;
+    }
+
     // Trim pixelCount pixels from the all four borders of the image and return the resulting 2D array of pixels
     public static int[][] trimBorders(int[][] pixelData, int pixelCount) {
         if (pixelData.length > pixelCount * 2 && pixelData[0].length > pixelCount * 2) {
