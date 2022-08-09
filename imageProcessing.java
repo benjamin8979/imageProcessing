@@ -11,7 +11,18 @@ class imageProcessing {
 
     }
 
-    // return pixel data of image doubled in width
+    // Return pixel data of image shrunken by half in height
+    public static int[][] shrinklVertically(int[][] pixelData) {
+        int[][] shrunken = new int[pixelData.length/2][pixelData[0].length];
+        for (int i = 0; i < shrunken.length; i++) {
+            for (int j = 0; j < shrunken[0].length; j++) {
+                shrunken[i][j] = pixelData[i*2][j];
+            }
+        }
+        return shrunken;
+    }
+
+    // Return pixel data of image doubled in width
     public static int[][] stretchHorizontally(int[][] pixelData) {
         int[][] stretched = new int[pixelData.length][pixelData[0].length * 2];
         for (int i = 0; i < stretched.length; i++) {
@@ -22,7 +33,7 @@ class imageProcessing {
         return stretched;
     }
 
-    // return negative version of input image pixel data
+    // Return negative version of input image pixel data
     public static int[][] negativeColor(int[][] pixelData) {
         int[][] negative = new int[pixelData.length][pixelData[0].length];
         for (int i = 0; i < negative.length; i++) {
