@@ -11,8 +11,19 @@ class imageProcessing {
 
     }
 
+    // Return pixel data of image flipped horizontally and vertically
+    public static int[][] invertImage(int[][] pixelData) {
+        int[][] inverted = new int[pixelData.length][pixelData[0].length];
+        for (int i = 0; i < inverted.length; i++) {
+            for (int j = 0; j < inverted[0].length; j++) {
+                inverted[i][j] = pixelData[inverted.length - 1 - i][inverted[0].length - 1 - j];
+            }
+        }
+        return inverted;
+    }
+
     // Return pixel data of image shrunken by half in height
-    public static int[][] shrinklVertically(int[][] pixelData) {
+    public static int[][] shrinkVertically(int[][] pixelData) {
         int[][] shrunken = new int[pixelData.length/2][pixelData[0].length];
         for (int i = 0; i < shrunken.length; i++) {
             for (int j = 0; j < shrunken[0].length; j++) {
