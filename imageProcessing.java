@@ -11,6 +11,17 @@ class imageProcessing {
 
     }
 
+    // return pixel data of image doubled in width
+    public static int[][] stretchHorizontally(int[][] pixelData) {
+        int[][] stretched = new int[pixelData.length][pixelData[0].length * 2];
+        for (int i = 0; i < stretched.length; i++) {
+            for (int j = 0; j < stretched[0].length; j++) {
+                stretched[i][j] = pixelData[i][j/2];
+            }
+        }
+        return stretched;
+    }
+
     // return negative version of input image pixel data
     public static int[][] negativeColor(int[][] pixelData) {
         int[][] negative = new int[pixelData.length][pixelData[0].length];
