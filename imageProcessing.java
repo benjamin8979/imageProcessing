@@ -8,7 +8,13 @@ import javax.imageio.ImageIO;
 
 class imageProcessing {
     public static void main(String[] args) {
+        // Example saving image as 2D array
+        int[][] pixelData = imgToArr("./apple.jpg");
 
+        // Alter image using methods below and resave as new file
+        int[][] altered_img = colorFilter(invertImage(shrinkVertically(stretchHorizontally
+        (negativeColor(trimBorders(pixelData, 20))))), -50, 80, 40);
+        arrToImg(altered_img, "./altered.jpg");
     }
 
     // Return pixel data of image with color filter changing the rgb values
