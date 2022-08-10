@@ -11,6 +11,29 @@ class imageProcessing {
 
     }
 
+    // Return pixel data of image with color filter changing the rgb values
+    public static int[][] colorFilter(int[][] pixelData, int redChange, int greenChange, int blueChange) {
+        int[][] filtered = new int[pixelData.length][pixelData[0].length];
+        for (int i = 0; i < filtered.length; i++) {
+            for (int j = 0; j < filtered[0].length; j++) {
+                int[] rgba = pixelToRGBA(pixelData[i][j]);
+                rgba[0] += redChange;
+                rgba[1] += greenChange;
+                rgba[2] += blueChange;
+                for (int k = 0; k < rgba.length; k++) {
+                    if (rgba[k] < 0) {
+                        rgba[k] = 0;
+                    }
+                    else if (rgba[k] > 255) {
+                        rgba[k] = 255;
+                    }
+                }
+                filtered[i][j] = RGBAToPixel(rgba);
+            }
+        }
+        return filtered;
+    }
+
     // Return pixel data of image flipped horizontally and vertically
     public static int[][] invertImage(int[][] pixelData) {
         int[][] inverted = new int[pixelData.length][pixelData[0].length];
