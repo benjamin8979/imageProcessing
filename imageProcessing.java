@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Random;
 import javax.imageio.ImageIO;
 
 class imageProcessing {
